@@ -1,23 +1,22 @@
 #!/usr/bin/env python
 import matplotlib.pyplot as plt
 
-def plot(x, y, xlabel, ylabel, wheretosave, mag, redshift ): #wheretosave includes path and name of the file
-    #if mag is not null
+def plot(x, y, xlabel, ylabel, wheretosave= None, redshift=None ): #wheretosave includes path and name of the file
+    if redshift is None: pass
+    else   :
     
-    #create the text to put in the textbox
-    textstr = '\n'.join((
-                         r'z = %.2f' % (redshift, ),
-                         r'magnitude = %.2f' % (mag, )))
+        #create the text to put in the textbox
+        textstr = r'z = %.2f' % (redshift, )
     
-    #textbox properties
-    props = dict(boxstyle='round', facecolor='skyblue', alpha=0.5)
+        #textbox properties
+        props = dict(boxstyle='round', facecolor='skyblue', alpha=0.5)
     
-    #textbox position
-    xtext = min(x)
-    ytext = max(y)
+        #textbox position
+        xtext = min(x)
+        ytext = max(y)
     
-    #let's plot the textbox!!
-    plt.text(xtext, ytext, textstr, fontsize=14,
+        #let's plot the textbox!!
+        plt.text(xtext, ytext, textstr, fontsize=14,
             verticalalignment='top', bbox=props)
     
     #axes parameters
@@ -35,9 +34,11 @@ def plot(x, y, xlabel, ylabel, wheretosave, mag, redshift ): #wheretosave includ
     plt.xlabel(xlabel, fontsize=10)
     plt.ylabel(ylabel, fontsize=10)
     #plt.legend()
-    plt.plot(x, y,c='skyblue', marker='x',linestyle='-', markersize=8)
+    plt.plot(x, y,c='skyblue',linestyle='-')
 
     plt.tick_params(axis='both', top=True, right=True, direction='in')  
-    plt.savefig(wheretosave + '.pdf') #save the plot in pdf automatically, do we wnat to add the option to choose?
+    
+    if wheretosave is not None:
+        plt.savefig(wheretosave + '.pdf') #save the plot in pdf automatically, do we wnat to add the option to choose?
     plt.show()
     
