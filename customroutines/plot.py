@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import matplotlib.pyplot as plt
 
-def plot(x, y, xlabel, ylabel, typeofplot, y1, y_err,wheretosave= None, redshift=None,): #wheretosave includes path and name of the file
+def plot(x, y, xlabel, ylabel, typeofplot, y_err,wheretosave= None, redshift=None,): #wheretosave includes path and name of the file
     
     #typeofplot can be either 'scatter' for a scatter plot or 'plot' for a lineplot
     #y_err is the error array for y
@@ -39,11 +39,11 @@ def plot(x, y, xlabel, ylabel, typeofplot, y1, y_err,wheretosave= None, redshift
     plt.ylabel(ylabel, fontsize=10)
     #plt.legend()
     if typeofplot== 'scatter':
-        plt.errorbar (x, y, yerr= y_err, marker = 'o', mfc = 'grey', mec ='black', mew=2, ls ='None',  capsize = 4,markersize=5)
+        plt.errorbar (x, y, yerr= y_err, marker = 'o', mfc = 'blue', mec ='black', mew=2, ls ='None', ecolor= 'blue', capsize = 4,markersize=5)
 
     elif typeofplot== 'plot':
         plt.plot(x, y,c='blue',linestyle='-')
-        plt.plot(x, y1,c='grey',linestyle='-')
+        plt.plot(x, y_err,c='grey',linestyle='-')
 
     plt.tick_params(axis='both', top=True, right=True, direction='in')  
     
