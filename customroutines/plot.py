@@ -1,5 +1,10 @@
 #!/usr/bin/env python
+
+from matplotlib import rcParams
+rcParams['font.family'] = 'sans-serif'
+rcParams['font.sans-serif'] = ['Tahoma']
 import matplotlib.pyplot as plt
+
 
 def plot(x, y, xlabel, ylabel, typeofplot, y_err,wheretosave= None, redshift=None):
     #xlabel, ylabel, typeofplot and wheretosave are strings
@@ -25,17 +30,6 @@ def plot(x, y, xlabel, ylabel, typeofplot, y_err,wheretosave= None, redshift=Non
             verticalalignment='top', bbox=props)
     
     #axes parameters
-    plt.rcParams['axes.linewidth'] = 1.6
-    plt.rc('font', weight = 'medium', family = 'serif', size = 10)
-    plt.rcParams['xtick.major.size']  = 7
-    plt.rcParams['xtick.major.width'] = 1.5
-    plt.rcParams['xtick.minor.size']  = 3
-    plt.rcParams['xtick.minor.width'] = 1
-    plt.rcParams['ytick.major.size']  = 5
-    plt.rcParams['ytick.major.width'] = 1.5
-    plt.rcParams['ytick.minor.size']  = 4
-    plt.rcParams['ytick.minor.width'] = 1
-    plt.rcParams["legend.fancybox"] = True
     plt.xlabel(xlabel, fontsize=10)
     plt.ylabel(ylabel, fontsize=10)
     plt.tick_params(axis='both', top=True, right=True, direction='in')
@@ -48,7 +42,7 @@ def plot(x, y, xlabel, ylabel, typeofplot, y_err,wheretosave= None, redshift=Non
     elif typeofplot== 'plot':
         plt.plot(x, y,c='blue',linestyle='-')
         plt.plot(x, y_err,c='grey',linestyle='-')
-#       plt.show()
+        plt.show()
 
     
     if wheretosave is not None:
