@@ -4,7 +4,7 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'sans-serif'
 rcParams['font.sans-serif'] = ['Tahoma']
 import matplotlib.pyplot as plt
-
+from pylab import *
 
 def plot(x, y, xlabel, ylabel, typeofplot, y_err, wheretosave= None, redshift=None):
     #xlabel, ylabel, typeofplot and wheretosave are strings
@@ -37,8 +37,11 @@ def plot(x, y, xlabel, ylabel, typeofplot, y_err, wheretosave= None, redshift=No
 
     #actual plotting
     if typeofplot== 'scatter':
-        plt.errorbar (x, y, yerr= y_err, marker = 'o', mfc = 'blue', mec ='black', mew=2, ls ='None', ecolor= 'blue', capsize = 4,markersize=5)
-        return
+        fig=plt.figure()
+        
+        _ = plt.errorbar (x, y, yerr= y_err, marker = 'o', mfc = 'blue', mec ='black', mew=2, ls ='None', ecolor= 'blue', capsize = 4,markersize=5)
+        return fig
+
 
     elif typeofplot== 'plot':
         plt.plot(x, y,c='blue',linestyle='-')

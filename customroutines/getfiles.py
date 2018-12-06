@@ -46,7 +46,7 @@ for i in range(len(ew)):
     plt.errorbar(line_wave[i], ew[i], ew_err[i], marker = 'o', mfc = c, mec ='black', mew=2, ls ='None', ecolor= c, capsize = 4,markersize=5)
 plt.xlabel("lines")
 plt.ylabel("equivalent widths")
-plt.show()
+plt.savefig("/Users/z5189882/Documents/confandstuff/scicoder2018/sdss_scicoder/customroutines/test_spectra/equivalent_width.pdf")
     #ploting eq_widths vs linenames for each galaxy
 #    eq_width_plot = pl(line_wave,ew,"lines","equivalent widths", "scatter",ew_err)
 
