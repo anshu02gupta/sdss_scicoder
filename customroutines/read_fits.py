@@ -53,6 +53,7 @@ class Galaxy_info(object):
 		if getattr(self,'_LINENAME',None) is None:
 			self._spectral_lines = dict()
 			self._spectral_lines["linename"] = self.hdu[3].data['LINENAME']
+			self._spectral_lines["linewave"] = self.hdu[3].data['LINEWAVE']
 			self._spectral_lines["ew"] = self.hdu[3].data['LINEEW']
 			self._spectral_lines["ew_err"] = self.hdu[3].data['LINEEW_ERR']
 			#print(self.hdu[3].data['LINEZ'])
