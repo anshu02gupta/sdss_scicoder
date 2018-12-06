@@ -6,7 +6,7 @@ rcParams['font.sans-serif'] = ['Tahoma']
 import matplotlib.pyplot as plt
 from pylab import *
 
-def plot(x, y, xlabel, ylabel, typeofplot, y_err, wheretosave= None, redshift=None):
+def plot(x, y, y_err, xlabel, ylabel, typeofplot, wheretosave= None, redshift=None):
     #xlabel, ylabel, typeofplot and wheretosave are strings
     #wheretosave includes path and name of the file
     
@@ -37,19 +37,20 @@ def plot(x, y, xlabel, ylabel, typeofplot, y_err, wheretosave= None, redshift=No
 
     #actual plotting
     if typeofplot== 'scatter':
-        fig=plt.figure()
         
-        _ = plt.errorbar (x, y, yerr= y_err, marker = 'o', mfc = 'blue', mec ='black', mew=2, ls ='None', ecolor= 'blue', capsize = 4,markersize=5)
-        return fig
+        plt.errorbar (x, y, yerr= y_err, marker = 'o', mfc = 'blue', mec ='black', mew=2, ls ='None', ecolor= 'blue', capsize = 4,markersize=5)
+    
+    
 
 
     elif typeofplot== 'plot':
+        plt.plot(x, y_err,c='grey',linestyle='-', alpha=0.2)
         plt.plot(x, y,c='blue',linestyle='-')
-        plt.plot(x, y_err,c='grey',linestyle='-')
+    
 #        plt.show()
 
     
     if wheretosave is not None:
         plt.savefig(wheretosave + '.pdf') #save the plot in pdf automatically, do we wnat to add the option to choose?
-
+        plt.clf()
     
