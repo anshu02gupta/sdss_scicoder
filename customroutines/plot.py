@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 import matplotlib.pyplot as plt
 
-def plot(x, y, xlabel, ylabel, wheretosave= None, redshift=None ): #wheretosave includes path and name of the file
+def plot(x, y, xlabel, ylabel, typeofplot, wheretosave= None, redshift=None , ): #wheretosave includes path and name of the file
+    
+    #typeofplot can be either 'scatter' for a scatter plot or 'plot' for a lineplot
     if redshift is None: pass
     else   :
     
@@ -34,7 +36,10 @@ def plot(x, y, xlabel, ylabel, wheretosave= None, redshift=None ): #wheretosave 
     plt.xlabel(xlabel, fontsize=10)
     plt.ylabel(ylabel, fontsize=10)
     #plt.legend()
-    plt.plot(x, y,c='skyblue',linestyle='-')
+    if typeofplot== 'scatter':
+        plt.scatter (x, y, c='r', marker='x', s=8) 
+    elif typeofplot== 'plot':
+        plt.plot(x, y,c='skyblue',linestyle='-')
 
     plt.tick_params(axis='both', top=True, right=True, direction='in')  
     
