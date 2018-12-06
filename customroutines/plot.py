@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 import matplotlib.pyplot as plt
 
-def plot(x, y, xlabel, ylabel, typeofplot, y_err,wheretosave= None, redshift=None): #wheretosave includes path and name of the file
+def plot(x, y, xlabel, ylabel, typeofplot, y_err,wheretosave= None, redshift=None):
+    #xlabel, ylabel, typeofplot and wheretosave are strings
+    #wheretosave includes path and name of the file
     
     #typeofplot can be either 'scatter' for a scatter plot or 'plot' for a lineplot
     #y_err is the error array for y
@@ -51,5 +53,5 @@ def plot(x, y, xlabel, ylabel, typeofplot, y_err,wheretosave= None, redshift=Non
     
     if wheretosave is not None:
         plt.savefig(wheretosave + '.pdf') #save the plot in pdf automatically, do we wnat to add the option to choose?
-    plt.show()
+    
     
