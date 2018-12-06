@@ -50,7 +50,7 @@ for file in glob(args.foldername+"/*.fits",recursive=True):
 
     i=i+1
 
-color=iter(cm.rainbow(np.linspace(0,len(ew))))
+color=iter(cm.rainbow(np.linspace(0,1,20)))
 for i in range(len(ew)):
     c=next(color)
     plt.errorbar(line_wave[i], ew[i], ew_err[i], marker = 'o', mfc = c, mec ='black', mew=2, ls ='None', ecolor= c, capsize = 4,markersize=5)
