@@ -48,10 +48,10 @@ def plot(x, y, xlabel, ylabel, typeofplot, y_err,wheretosave= None, redshift=Non
     elif typeofplot== 'plot':
         plt.plot(x, y,c='blue',linestyle='-')
         plt.plot(x, y_err,c='grey',linestyle='-')
-
+#       plt.show()
 
     
     if wheretosave is not None:
         plt.savefig(wheretosave + '.pdf') #save the plot in pdf automatically, do we wnat to add the option to choose?
-    
+
     
