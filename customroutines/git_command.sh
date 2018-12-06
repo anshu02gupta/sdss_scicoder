@@ -1,5 +1,5 @@
 git pull 
 git add *
-git commit -m $HOSTNAME+$DATE
+git commit -m $(date +"%T")
 git push
 
