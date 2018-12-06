@@ -1,23 +1,24 @@
 #!/usr/bin/env python
 import matplotlib.pyplot as plt
 
-def plot(x, y, xlabel, ylabel, wheretosave, mag, redshift ): #wheretosave includes path and name of the file
-    #if mag is not null
+def plot(x, y, xlabel, ylabel, typeofplot, wheretosave= None, redshift=None , ): #wheretosave includes path and name of the file
     
-    #create the text to put in the textbox
-    textstr = '\n'.join((
-                         r'z = %.2f' % (redshift, ),
-                         r'magnitude = %.2f' % (mag, )))
+    #typeofplot can be either 'scatter' for a scatter plot or 'plot' for a lineplot
+    if redshift is None: pass
+    else   :
     
-    #textbox properties
-    props = dict(boxstyle='round', facecolor='skyblue', alpha=0.5)
+        #create the text to put in the textbox
+        textstr = r'z = %.2f' % (redshift, )
     
-    #textbox position
-    xtext = min(x)
-    ytext = max(y)
+        #textbox properties
+        props = dict(boxstyle='round', facecolor='skyblue', alpha=0.5)
     
-    #let's plot the textbox!!
-    plt.text(xtext, ytext, textstr, fontsize=14,
+        #textbox position
+        xtext = min(x)
+        ytext = max(y)
+    
+        #let's plot the textbox!!
+        plt.text(xtext, ytext, textstr, fontsize=14,
             verticalalignment='top', bbox=props)
     
     #axes parameters
@@ -35,9 +36,14 @@ def plot(x, y, xlabel, ylabel, wheretosave, mag, redshift ): #wheretosave includ
     plt.xlabel(xlabel, fontsize=10)
     plt.ylabel(ylabel, fontsize=10)
     #plt.legend()
-    plt.plot(x, y,c='skyblue', marker='x',linestyle='-', markersize=8)
+    if typeofplot== 'scatter':
+        plt.scatter (x, y, c='r', marker='x', s=8) 
+    elif typeofplot== 'plot':
+        plt.plot(x, y,c='skyblue',linestyle='-')
 
     plt.tick_params(axis='both', top=True, right=True, direction='in')  
-    plt.savefig(wheretosave + '.pdf') #save the plot in pdf automatically, do we wnat to add the option to choose?
+    
+    if wheretosave is not None:
+        plt.savefig(wheretosave + '.pdf') #save the plot in pdf automatically, do we wnat to add the option to choose?
     plt.show()
     
