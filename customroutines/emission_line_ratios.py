@@ -42,7 +42,8 @@ class Emission_line(object):
 		
 		if ew_ln1 !=0.0 and ew_ln2 != 0.0:
 			self.line_ratio["lineratio"]  = np.log10(ew_ln1/ew_ln2)
-			self.line_ratio["lineratio_err"]  = np.sqrt((np.power(ew_ln1_err/ew_ln1, 2)+ np.power(ew_ln2_err/ew_ln2,2)))/(ew_ln2*np.log(10)/ew_ln2)		
+			self.line_ratio["lineratio_err"]  = np.sqrt((np.power(ew_ln1_err/ew_ln1, 2)+ np.power(ew_ln2_err/ew_ln2,2)))/(ew_ln2*np.log(10)/ew_ln2)
+            
 		else:
 			self.line_ratio["lineratio"] = None
 			self.line_ratio["lineratio_err"] = None
