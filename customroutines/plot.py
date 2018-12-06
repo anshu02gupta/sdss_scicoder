@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 import matplotlib.pyplot as plt
 
-def plot(x, y, xlabel, ylabel, typeofplot, wheretosave= None, redshift=None , ): #wheretosave includes path and name of the file
+def plot(x, y, xlabel, ylabel, typeofplot, y1, y_err,wheretosave= None, redshift=None,): #wheretosave includes path and name of the file
     
     #typeofplot can be either 'scatter' for a scatter plot or 'plot' for a lineplot
+    #y_err is the error array for y
+    #y1 is the second array of y that we want to overplot
     if redshift is None: pass
     else   :
     
@@ -37,9 +39,11 @@ def plot(x, y, xlabel, ylabel, typeofplot, wheretosave= None, redshift=None , ):
     plt.ylabel(ylabel, fontsize=10)
     #plt.legend()
     if typeofplot== 'scatter':
-        plt.scatter (x, y, c='r', marker='x', s=8) 
+        plt.errorbar (x, y, yerr= y_err, marker = 'o', mfc = 'grey', mec ='black', mew=2, ls ='None',  capsize = 4,markersize=5)
+
     elif typeofplot== 'plot':
-        plt.plot(x, y,c='skyblue',linestyle='-')
+        plt.plot(x, y,c='blue',linestyle='-')
+        plt.plot(x, y1,c='grey',linestyle='-')
 
     plt.tick_params(axis='both', top=True, right=True, direction='in')  
     
