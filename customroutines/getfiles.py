@@ -1,6 +1,9 @@
 
 import argparse
+import numpy as np
 from glob import glob
+import matplotlib.pyplot as plt
+from matplotlib.pyplot import cm
 from plot import plot as pl #Giulia
 from read_fits import Read_fits as rf #Anshu
 from read_fits import Galaxy_info as gal_info #Anshu
@@ -9,6 +12,7 @@ parser = argparse.ArgumentParser(description = "This program reads sdss spectrum
 parser.add_argument("-f","--foldername", help = "Path to the folder containing spectrum fits files")
 args = parser.parse_args()
 
+ew,ew_err,line_wave =[[]],[[]],[[]]
 
 #getting all the spectra in the folder and the galaxy properties for each spectra
 
@@ -22,17 +26,29 @@ for file in glob(args.foldername+"/*.fits",recursive=True):
     
     #Getiing galaxy properties-- provide filename to the gal_info
     gal_props = gal_info(file)
-    line_names = gal_props.spectral_lines["linename"]
-
-    ew = gal_props.spectral_lines["ew"]
-    ew_err = gal_props.spectral_lines["ew_err"]
+    line_names =(list(gal_props.spectral_lines["linename"]))
+    line_wave.append(list(gal_props.spectral_lines["linewave"]))
+    ew.append(list(gal_props.spectral_lines["ew"]))
+    ew_err.append(list(gal_props.spectral_lines["ew_err"]))
     redshift  = gal_props.redshift["z"]
     redshift_err = gal_props.redshift["z_err"]
-
+    #    if 0.0 in redshift:
+    #        print("none")
+    #    mean_redshift = np.mean(np.array((redshift.tolist()).remove(0.0)))
     #print(line_names) # galaxy props works so far
-
+    
     #plotting and saving all spectra
-    pl(wavelength,flux_spectrum,r"$Wavelength (\AA)$", r"$flux (10^(-17) ergs/s/cm^2/ \AA)$","plot",error_spectrum,name)
+    (wavelength,flux_spectrum,r"$Wavelength\  (\AA)$", r"$flux (10^{-17} ergs/s/cm^2/\AA)$","plot",error_spectrum,"/Users/z5189882/Documents/confandstuff/scicoder2018/sdss_scicoder/customroutines/test_spectra/"+name)
 
+color=iter(cm.rainbow(np.linspace(0,1,len(ew))))
+for i in range(len(ew)):
+    c=next(color)
+    plt.errorbar(line_wave[i], ew[i], ew_err[i], marker = 'o', mfc = c, mec ='black', mew=2, ls ='None', ecolor= c, capsize = 4,markersize=5)
+plt.xlabel("lines")
+plt.ylabel("equivalent widths")
+plt.show()
     #ploting eq_widths vs linenames for each galaxy
-    pl(line_names,ew,ew_err)
+#    eq_width_plot = pl(line_wave,ew,"lines","equivalent widths", "scatter",ew_err)
+
+
+#eq_width_plot.savefig("/Users/z5189882/Documents/confandstuff/scicoder2018/sdss_scicoder/customroutines/test_spectra/equivalent_width.pdf")
