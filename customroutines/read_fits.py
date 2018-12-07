@@ -1,3 +1,10 @@
+####################Calling Sequence###########################
+#filename = '/Users/z3525264/Documents/work/SciCoder-2018-Sydney/sdss_scicoder/spectra/spec-10000-57346-0002.fits'
+
+#sdss_galaxy = Galaxy_info(filename)
+#linename = sdss_galaxy.spectral_lines["linename"]
+#print(linename[1])
+
 from astropy.io import fits
 
 
@@ -60,10 +67,4 @@ class Galaxy_info(object):
 			return self._spectral_lines
 		
 
-
-#filename = '/Users/z3525264/Documents/work/SciCoder-2018-Sydney/sdss_scicoder/spectra/spec-10000-57346-0002.fits'
-
-#sdss_galaxy = Galaxy_info(filename)
-#linename = sdss_galaxy.spectral_lines["linename"]
-#print(linename[1])
 
