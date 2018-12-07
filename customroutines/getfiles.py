@@ -18,7 +18,7 @@ ew,ew_err,line_wave =[[]],[[]],[[]]
 
 #getting all the spectra in the folder and the galaxy properties for each spectra
 i=0
-for file in glob(args.foldername+"/*.fits",recursive=True):
+for file in glob(args.foldername+"/*.fits"):
     name  = (file.split("/")[8]).rstrip(".fits")
     #Reading file to get wavelength and flux and error spectrum
     galaxy = rf(file)
@@ -40,12 +40,15 @@ for file in glob(args.foldername+"/*.fits",recursive=True):
     
     #plotting and saving all spectra
     pl(wavelength,flux_spectrum,error_spectrum,r"$Wavelength\  (\AA)$", r"$flux (10^{-17} ergs/s/cm^2/\AA)$","plot","/Users/z5189882/Documents/confandstuff/scicoder2018/sdss_scicoder/customroutines/test_spectra/"+name,mean_redshift)
+    #For BPT - calculating line ratios--
     O3_Hb=(Em_Line(gal_props.spectral_lines["linename"], gal_props.spectral_lines["ew"], gal_props.spectral_lines["ew_err"], '[O_III] 5007', 'H_beta'))
     O3_Hb_ratio = (O3_Hb.line_ratio())
     N2_Ha=(Em_Line(gal_props.spectral_lines["linename"], gal_props.spectral_lines["ew"], gal_props.spectral_lines["ew_err"], '[N_II] 6583', 'H_alpha'))
     N2_Ha_ratio = (N2_Ha.line_ratio())
+    
     print(O3_Hb_ratio["lineratio"],O3_Hb_ratio["lineratio_err"])
     print(N2_Ha_ratio["lineratio"],N2_Ha_ratio["lineratio_err"])
+    print("-----------------------")
     
 
     i=i+1
